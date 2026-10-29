@@ -1,0 +1,27 @@
+<idea-plugin>
+  <id>dev.seigwen.dualtran</id>
+  <name>DualTran Translate</name>
+  <vendor>seigwen</vendor>
+
+  <description><![CDATA[
+    Translate the selected text without leaving the editor. Google Translate works with no key;
+    any OpenAI-compatible endpoint works with your own key (BYOK), including a local Ollama.
+  ]]></description>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="dev.seigwen.dualtran.DualTranSettings"/>
+    <notificationGroup id="DualTran" displayType="BALLOON"/>
+  </extensions>
+
+  <actions>
+    <action id="DualTran.TranslateSelection"
+            class="dev.seigwen.dualtran.TranslateAction"
+            text="Translate selection (DualTran)"
+            description="Translate the selected text into the configured language">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt T"/>
+    </action>
+  </actions>
+</idea-plugin>
