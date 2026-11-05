@@ -33,6 +33,6 @@ tasks {
         useJUnit()
     }
     runIde {
-        jvmArgs("-Xmx2g")
+        jvmArgs("-Xmx1g", "-XX:ReservedCodeCacheSize=256m")
     }
 }
