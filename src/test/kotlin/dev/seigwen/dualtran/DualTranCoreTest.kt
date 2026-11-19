@@ -33,6 +33,13 @@ class DualTranCoreTest {
         assertTrue(payload.contains("zh-CN"))
         assertTrue(payload.contains("Hello \\\"world\\\""))
         assertTrue(payload.contains("\"temperature\":0"))
+        assertTrue(!payload.contains("reasoning_effort"))
+    }
+
+    @Test
+    fun `forwards reasoning effort when it is not lowest`() {
+        val payload = DualTranCore.buildChatPayload("gpt-4o-mini", "Hello", "zh-CN", "high")
+        assertTrue(payload.contains("\"reasoning_effort\":\"high\""))
     }
 
     @Test

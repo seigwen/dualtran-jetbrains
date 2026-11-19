@@ -13,7 +13,7 @@ Runs on the IntelliJ Platform 2023.3+ (IDEA, PyCharm, WebStorm, GoLand, CLion, R
 ## Build
 
 ```bash
-./gradlew buildPlugin        # -> build/distributions/dualtran-jetbrains-0.1.0.zip
+./gradlew buildPlugin        # -> build/distributions/dualtran-jetbrains-0.2.0.zip
 ./gradlew test               # JUnit over the translation core
 ./gradlew runIde             # sandbox IDE with the plugin installed
 ```
@@ -25,8 +25,9 @@ Until it is on the Marketplace, that is the only route.
 
 ## Configuration
 
-Settings live in `dualtran.xml` in the IDE config directory; defaults are Google / `zh-CN`. To use
-an AI endpoint, edit that file (a settings UI is the next milestone):
+Open **Settings → Tools → DualTran**. The form edits Engine, Target language, API endpoint,
+API key, Model and Reasoning effort; Apply writes them to `dualtran.xml` and the next translation
+uses them without an IDE restart. Values are also readable/editable in that file:
 
 ```xml
 <application>
@@ -36,6 +37,7 @@ an AI endpoint, edit that file (a settings UI is the next milestone):
     <option name="model" value="gpt-4o-mini" />
     <option name="apiKey" value="sk-..." />
     <option name="target" value="zh-CN" />
+    <option name="reasoning" value="lowest" />
   </component>
 </application>
 ```
@@ -43,9 +45,9 @@ an AI endpoint, edit that file (a settings UI is the next milestone):
 ## Status
 
 - JUnit tests over the translation core: endpoint normalisation, payload escaping, response
-  parsing (including `\uXXXX`), Google URL encoding, chunking.
-- **Not yet run inside a real IDE** — `buildPlugin` proves it compiles and packages against the
-  platform SDK; the action itself still needs a manual smoke test.
+  parsing (including `\uXXXX`), Google URL encoding, chunking, reasoning effort.
+- `buildPlugin` compiles and packages against IntelliJ Platform 2023.3; the settings form is
+  registered as an application configurable under Tools.
 - Marketplace publication needs a JetBrains vendor account.
 
 ## Licence

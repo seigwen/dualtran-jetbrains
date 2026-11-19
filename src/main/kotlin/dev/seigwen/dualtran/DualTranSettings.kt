@@ -8,8 +8,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 
 /**
  * Application-level settings, stored in `dualtran.xml` in the IDE config directory.
- * Deliberately not a full settings UI yet: the action reads these values and the defaults are
- * good enough for a first release.
+ * Edited through Settings → Tools → DualTran.
  */
 @State(name = "DualTranSettings", storages = [Storage("dualtran.xml")])
 class DualTranSettings : PersistentStateComponent<DualTranSettings.Data> {
@@ -17,9 +16,11 @@ class DualTranSettings : PersistentStateComponent<DualTranSettings.Data> {
     data class Data(
         var engine: String = "google",
         var target: String = "zh-CN",
-        var endpoint: String = "https://api.openai.com/v1",
+        var endpoint: String = "",
         var apiKey: String = "",
-        var model: String = "gpt-4o-mini",
+        var model: String = "",
+        var aiProvider: String = "",
+        var reasoning: String = "lowest",
     )
 
     private var state = Data()
@@ -30,12 +31,22 @@ class DualTranSettings : PersistentStateComponent<DualTranSettings.Data> {
         XmlSerializerUtil.copyBean(state, this.state)
     }
 
+    /** A copy for the settings form; editing it must not mutate live state. */
+    fun snapshot(): Data = state.copy()
+
+    /** Called from the settings form's apply(). */
+    fun update(next: Data) {
+        state = next.copy()
+    }
+
     fun core(): DualTranCore.Settings = DualTranCore.Settings(
         engine = state.engine,
         target = state.target,
         endpoint = state.endpoint,
         apiKey = state.apiKey,
         model = state.model,
+        provider = state.aiProvider,
+        reasoning = state.reasoning,
     )
 
     companion object {

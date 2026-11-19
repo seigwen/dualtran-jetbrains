@@ -12,6 +12,10 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <applicationService serviceImplementation="dev.seigwen.dualtran.DualTranSettings"/>
+    <applicationConfigurable parentId="tools"
+                             id="dev.seigwen.dualtran.settings"
+                             displayName="DualTran"
+                             instance="dev.seigwen.dualtran.DualTranConfigurable"/>
     <notificationGroup id="DualTran" displayType="BALLOON"/>
   </extensions>
 

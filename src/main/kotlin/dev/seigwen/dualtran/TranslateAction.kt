@@ -59,9 +59,10 @@ class TranslateAction : AnAction() {
         DualTranCore.parseGoogleResponse(request("GET", DualTranCore.googleUrl(text, settings.target), null, null))
 
     private fun translateWithAi(text: String, settings: DualTranCore.Settings): String {
+        check(settings.provider.isNotEmpty()) { "Select an AI provider in Settings → Tools → DualTran" }
         val headers = mutableMapOf("Content-Type" to "application/json")
         if (settings.apiKey.isNotEmpty()) headers["Authorization"] = "Bearer ${settings.apiKey}"
-        val body = DualTranCore.buildChatPayload(settings.model, text, settings.target)
+        val body = DualTranCore.buildChatPayload(settings.model, text, settings.target, settings.reasoning)
         return DualTranCore.parseChatResponse(
             request("POST", DualTranCore.chatCompletionsUrl(settings.endpoint), body, headers),
         )

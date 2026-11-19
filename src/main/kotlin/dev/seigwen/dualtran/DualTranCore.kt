@@ -11,9 +11,11 @@ object DualTranCore {
     data class Settings(
         val engine: String = "google",
         val target: String = "zh-CN",
-        val endpoint: String = "https://api.openai.com/v1",
+        val endpoint: String = "",
         val apiKey: String = "",
-        val model: String = "gpt-4o-mini",
+        val model: String = "",
+        val provider: String = "",
+        val reasoning: String = "lowest",
     )
 
     const val MAX_QUERY = 1800
@@ -50,11 +52,16 @@ object DualTranCore {
         return out.toString()
     }
 
-    fun buildChatPayload(model: String, text: String, target: String): String {
+    fun buildChatPayload(model: String, text: String, target: String, reasoning: String = "lowest"): String {
         val system = "You translate into $target. Return only the translation, no commentary and " +
             "no quotes. Keep names, numbers and inline code exactly as they appear. " +
             "If the text is already in $target, return it unchanged."
-        return """{"model":"${escapeJson(model)}","temperature":0,"stream":false,"messages":[""" +
+        val effort = if (reasoning.isNotBlank() && reasoning != "lowest") {
+            ",\"reasoning_effort\":\"${escapeJson(reasoning)}\""
+        } else {
+            ""
+        }
+        return """{"model":"${escapeJson(model)}","temperature":0,"stream":false$effort,"messages":[""" +
             """{"role":"system","content":"${escapeJson(system)}"},""" +
             """{"role":"user","content":"${escapeJson(text)}"}]}"""
     }
