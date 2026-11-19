@@ -1,0 +1,101 @@
+{
+  "id": "jetbrains-translation-configured",
+  "host": "dualtran-jetbrains",
+  "axis": "configured",
+  "covers": [
+    "translation.result",
+    "runtime.targetLanguage",
+    "editor.translate"
+  ],
+  "actions": [
+    {
+      "type": "key",
+      "key": "17 down"
+    },
+    {
+      "type": "key",
+      "key": "16 down"
+    },
+    {
+      "type": "key",
+      "key": "78"
+    },
+    {
+      "type": "key",
+      "key": "16 up"
+    },
+    {
+      "type": "key",
+      "key": "17 up"
+    },
+    {
+      "type": "wait",
+      "ms": 800
+    },
+    {
+      "type": "type",
+      "text": "sample.md"
+    },
+    {
+      "type": "wait",
+      "ms": 500
+    },
+    {
+      "type": "key",
+      "key": "13"
+    },
+    {
+      "type": "wait",
+      "ms": 2500
+    },
+    {
+      "type": "key",
+      "key": "17 down"
+    },
+    {
+      "type": "key",
+      "key": "65"
+    },
+    {
+      "type": "key",
+      "key": "17 up"
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "key",
+      "key": "17 down"
+    },
+    {
+      "type": "key",
+      "key": "18 down"
+    },
+    {
+      "type": "key",
+      "key": "84"
+    },
+    {
+      "type": "key",
+      "key": "18 up"
+    },
+    {
+      "type": "key",
+      "key": "17 up"
+    },
+    {
+      "type": "wait",
+      "ms": 5000
+    },
+    {
+      "type": "wait",
+      "ms": 1500
+    },
+    {
+      "type": "screenshot",
+      "name": "jetbrains-translation-configured",
+      "rubric": "jetbrains-translation-configured"
+    }
+  ]
+}

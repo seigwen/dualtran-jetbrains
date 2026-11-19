@@ -1,0 +1,190 @@
+{
+  "host": "dualtran-jetbrains",
+  "version": "0.1.0",
+  "adapter": "windowsGui",
+  "adapterConfig": {
+    "windowTitle": "Welcome to IntelliJ IDEA|project|Settings",
+    "focusOnStart": true
+  },
+  "surfaces": [
+    {
+      "id": "plugin.installed",
+      "kind": "state",
+      "label": "DualTran Translate plugin",
+      "location": "Settings → Plugins → Installed",
+      "expected": [
+        "DualTran Translate 0.1.0 installed and enabled"
+      ]
+    },
+    {
+      "id": "translation.result",
+      "kind": "state",
+      "label": "Translate selection result",
+      "location": "IntelliJ editor notification balloon",
+      "expected": [
+        "Chinese translation in notification"
+      ]
+    },
+    {
+      "id": "runtime.targetLanguage",
+      "kind": "state",
+      "label": "Runtime target language",
+      "location": "DualTran notification title",
+      "expected": [
+        "title includes zh-CN"
+      ]
+    },
+    {
+      "id": "settings.provider",
+      "kind": "select",
+      "label": "AI provider",
+      "location": "No DualTran settings UI in IntelliJ",
+      "expected": [
+        "provider control"
+      ]
+    },
+    {
+      "id": "settings.targetLanguage",
+      "kind": "select",
+      "label": "Target language",
+      "location": "No DualTran settings UI in IntelliJ",
+      "expected": [
+        "target language control"
+      ]
+    },
+    {
+      "id": "settings.model",
+      "kind": "select",
+      "label": "Model",
+      "location": "No DualTran settings UI in IntelliJ",
+      "expected": [
+        "model control"
+      ]
+    },
+    {
+      "id": "settings.endpoint",
+      "kind": "input",
+      "label": "API endpoint",
+      "location": "No DualTran settings UI in IntelliJ",
+      "expected": [
+        "endpoint control"
+      ]
+    },
+    {
+      "id": "settings.reasoning",
+      "kind": "select",
+      "label": "Reasoning effort",
+      "location": "No DualTran settings UI in IntelliJ",
+      "expected": [
+        "reasoning control"
+      ]
+    },
+    {
+      "id": "settings.apiKey",
+      "kind": "input",
+      "label": "API key",
+      "location": "Settings → Tools → DualTran"
+    }
+  ],
+  "functions": [
+    {
+      "id": "plugin.manage",
+      "label": "Open Settings → Plugins",
+      "entry": "Ctrl+Alt+S → Plugins",
+      "expected": "Installed plugin list shows DualTran Translate 0.1.0 enabled"
+    },
+    {
+      "id": "editor.translate",
+      "label": "Translate selected text",
+      "entry": "Select text → Ctrl+Alt+T",
+      "expected": "DualTran notification with Chinese translation"
+    }
+  ],
+  "rubrics": {
+    "jetbrains-plugins-baseline": {
+      "hard": [
+        {
+          "id": "plugin_visible",
+          "question": "Does Settings → Plugins → Installed show DualTran Translate 0.1.0 with its enabled checkbox checked?",
+          "expected": true
+        },
+        {
+          "id": "no_raw_error",
+          "question": "Is the plugin list free of visible error dialogs or tracebacks?",
+          "expected": true
+        }
+      ],
+      "soft": []
+    },
+    "jetbrains-translation-configured": {
+      "hard": [
+        {
+          "id": "selection_visible",
+          "question": "Is 'Hello world' selected in the sample.md editor?",
+          "expected": true
+        },
+        {
+          "id": "translation_chinese",
+          "question": "Does a DualTran notification show the Chinese translation 你好，世界?",
+          "expected": true
+        },
+        {
+          "id": "target_zh_cn",
+          "question": "Does the DualTran notification title contain zh-CN?",
+          "expected": true
+        },
+        {
+          "id": "no_raw_error",
+          "question": "Is the interface free of raw error notifications or tracebacks (apart from old notifications that are not part of this run)?",
+          "expected": true
+        }
+      ],
+      "soft": []
+    },
+    "jetbrains-settings-ui": {
+      "hard": [
+        {
+          "id": "engine_visible",
+          "question": "Is the Engine dropdown visible?",
+          "expected": true
+        },
+        {
+          "id": "target_dropdown",
+          "question": "Is Target language a dropdown (not a free-text language-code field) with a concrete value?",
+          "expected": true
+        },
+        {
+          "id": "provider_dropdown",
+          "question": "Is AI provider a dropdown (not a free-text field)?",
+          "expected": true
+        },
+        {
+          "id": "model_dropdown",
+          "question": "Is Model a dropdown (not a free-text field)?",
+          "expected": true
+        },
+        {
+          "id": "reasoning_dropdown",
+          "question": "Is Reasoning effort a dropdown with a lowest/low/medium/high style value?",
+          "expected": true
+        },
+        {
+          "id": "api_key_visible",
+          "question": "Is an API key field visible?",
+          "expected": true
+        },
+        {
+          "id": "no_raw_error",
+          "question": "Is the pane free of a stack trace, raw JSON, or plugin-load error?",
+          "expected": true
+        }
+      ],
+      "soft": []
+    }
+  },
+  "scenarios": [
+    "jetbrains-plugins-baseline",
+    "jetbrains-translation-configured",
+    "jetbrains-settings-ui"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "jetbrains-plugins-baseline",
+  "host": "dualtran-jetbrains",
+  "axis": "baseline",
+  "covers": [
+    "plugin.installed",
+    "plugin.manage"
+  ],
+  "actions": [
+    {
+      "type": "key",
+      "key": "17 down"
+    },
+    {
+      "type": "key",
+      "key": "18 down"
+    },
+    {
+      "type": "key",
+      "key": "83"
+    },
+    {
+      "type": "key",
+      "key": "18 up"
+    },
+    {
+      "type": "key",
+      "key": "17 up"
+    },
+    {
+      "type": "wait",
+      "ms": 1500
+    },
+    {
+      "type": "clickAt",
+      "x": 430,
+      "y": 237
+    },
+    {
+      "type": "wait",
+      "ms": 1500
+    },
+    {
+      "type": "clickAt",
+      "x": 890,
+      "y": 112
+    },
+    {
+      "type": "wait",
+      "ms": 1000
+    },
+    {
+      "type": "screenshot",
+      "name": "jetbrains-plugins-baseline",
+      "rubric": "jetbrains-plugins-baseline"
+    }
+  ]
+}

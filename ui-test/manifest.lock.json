@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "surfaces": [
+    "plugin.installed",
+    "runtime.targetLanguage",
+    "settings.apiKey",
+    "settings.endpoint",
+    "settings.model",
+    "settings.provider",
+    "settings.reasoning",
+    "settings.targetLanguage",
+    "translation.result"
+  ],
+  "functions": [
+    "editor.translate",
+    "plugin.manage"
+  ],
+  "scenarios": [
+    "jetbrains-plugins-baseline",
+    "jetbrains-settings-ui",
+    "jetbrains-translation-configured"
+  ],
+  "digest": "sha256:2eaadb0eda7f1830f7410af16271ef42995652b870c8a1fe8c580dba18b3e9c6"
+}

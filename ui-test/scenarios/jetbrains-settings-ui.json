@@ -1,0 +1,78 @@
+{
+  "id": "jetbrains-settings-ui",
+  "host": "dualtran-jetbrains",
+  "axis": "settings-ui",
+  "covers": [
+    "settings.provider",
+    "settings.targetLanguage",
+    "settings.model",
+    "settings.endpoint",
+    "settings.reasoning",
+    "settings.apiKey",
+    "plugin.manage"
+  ],
+  "actions": [
+    {
+      "type": "key",
+      "key": "27"
+    },
+    {
+      "type": "wait",
+      "ms": 600
+    },
+    {
+      "type": "key",
+      "key": "27"
+    },
+    {
+      "type": "wait",
+      "ms": 600
+    },
+    {
+      "type": "key",
+      "key": "17 down"
+    },
+    {
+      "type": "key",
+      "key": "18 down"
+    },
+    {
+      "type": "key",
+      "key": "83"
+    },
+    {
+      "type": "key",
+      "key": "18 up"
+    },
+    {
+      "type": "key",
+      "key": "17 up"
+    },
+    {
+      "type": "wait",
+      "ms": 4000
+    },
+    {
+      "type": "clickAt",
+      "x": 425,
+      "y": 86
+    },
+    {
+      "type": "wait",
+      "ms": 600
+    },
+    {
+      "type": "type",
+      "text": "DualTran"
+    },
+    {
+      "type": "wait",
+      "ms": 3000
+    },
+    {
+      "type": "screenshot",
+      "name": "jetbrains-settings-ui",
+      "rubric": "jetbrains-settings-ui"
+    }
+  ]
+}
