@@ -1,0 +1,10 @@
+{
+  "name": "dualtran-jetbrains-conformance",
+  "private": true,
+  "version": "0.2.0",
+  "type": "commonjs",
+  "scripts": {
+    "conformance": "node scripts/conformance/run.mjs",
+    "conformance:negative": "node scripts/conformance/negative-control.mjs build/conformance/payload.json"
+  }
+}

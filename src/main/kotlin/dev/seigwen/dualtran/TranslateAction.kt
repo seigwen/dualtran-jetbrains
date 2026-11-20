@@ -41,7 +41,11 @@ class TranslateAction : AnAction() {
                         notify("DualTran · ${settings.target}", escape(translation), NotificationType.INFORMATION)
                     },
                     onFailure = { error ->
-                        notify("DualTran failed", escape(error.message ?: error.toString()), NotificationType.ERROR)
+                        notify(
+                            DualTranMessages.text("translationFailed", "DualTran failed"),
+                            escape(error.message ?: error.toString()),
+                            NotificationType.ERROR,
+                        )
                     },
                 )
             }
@@ -59,10 +63,14 @@ class TranslateAction : AnAction() {
         DualTranCore.parseGoogleResponse(request("GET", DualTranCore.googleUrl(text, settings.target), null, null))
 
     private fun translateWithAi(text: String, settings: DualTranCore.Settings): String {
-        check(settings.provider.isNotEmpty()) { "Select an AI provider in Settings → Tools → DualTran" }
+        check(settings.provider.isNotEmpty()) {
+            DualTranMessages.text("providerRequired", "Select an AI provider in Settings → Tools → DualTran")
+        }
         val headers = mutableMapOf("Content-Type" to "application/json")
         if (settings.apiKey.isNotEmpty()) headers["Authorization"] = "Bearer ${settings.apiKey}"
-        val body = DualTranCore.buildChatPayload(settings.model, text, settings.target, settings.reasoning)
+        val modelOptions = DualTranCatalog.model(settings.provider, settings.model)?.reasoningOptions.orEmpty()
+        val reasoning = DualTranCore.resolveReasoning(settings.reasoning, modelOptions)
+        val body = DualTranCore.buildChatPayload(settings.model, text, settings.target, reasoning)
         return DualTranCore.parseChatResponse(
             request("POST", DualTranCore.chatCompletionsUrl(settings.endpoint), body, headers),
         )

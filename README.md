@@ -42,10 +42,25 @@ uses them without an IDE restart. Values are also readable/editable in that file
 </application>
 ```
 
+## Conformance (SPEC 2.1)
+
+The plugin owns a real SPEC 2.1 gate, not a hand-written payload:
+
+```bash
+npm run conformance          # Kotlin catalogue + 38-locale bundle -> validate.mjs
+npm run conformance:negative # proves R2/R4/R5 can fail
+./gradlew test buildPlugin
+```
+
+The gate covers the provider `source` split (built-in + models.dev), the
+non-selectable empty provider placeholder, model-level reasoning resolution
+(`none → minimal → low`), and the 38-locale message matrix. CI runs it as the
+`Conformance` workflow. The settings form and translation action use the same
+`DualTranMessages` bundle, so the gate and the rendered UI share one source.
+
 ## Status
 
-- JUnit tests over the translation core: endpoint normalisation, payload escaping, response
-  parsing (including `\uXXXX`), Google URL encoding, chunking, reasoning effort.
+- JUnit tests over the translation core and the catalogue/i18n invariants.
 - `buildPlugin` compiles and packages against IntelliJ Platform 2023.3; the settings form is
   registered as an application configurable under Tools.
 - Marketplace publication needs a JetBrains vendor account.

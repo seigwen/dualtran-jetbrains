@@ -35,4 +35,11 @@ tasks {
     runIde {
         jvmArgs("-Xmx1g", "-XX:ReservedCodeCacheSize=256m")
     }
+    register<JavaExec>("conformancePayload") {
+        group = "verification"
+        description = "Write the SPEC 2.1 payload from the real Kotlin catalogue and message bundle"
+        dependsOn("testClasses")
+        classpath = sourceSets["test"].runtimeClasspath
+        mainClass.set("dev.seigwen.dualtran.ConformancePayload")
+    }
 }

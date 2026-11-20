@@ -1,0 +1,19 @@
+{
+  "spec": "2.1.0",
+  "host": "dualtran-jetbrains",
+  "payloadCommand": "bash scripts/conformance/payload.sh",
+  "static": {
+    "files": [
+      "src/main/kotlin/dev/seigwen/dualtran/DualTranConfigurable.kt",
+      "src/main/kotlin/dev/seigwen/dualtran/DualTranCatalog.kt",
+      "src/main/resources/catalog.json"
+    ],
+    "patterns": [
+      "providerSeparator",
+      "__separator__",
+      "__more__",
+      "More (models.dev)"
+    ]
+  },
+  "platformLimits": []
+}

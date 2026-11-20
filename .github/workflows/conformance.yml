@@ -1,0 +1,32 @@
+name: Conformance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+      - name: Unit and build checks
+        run: ./gradlew test buildPlugin --no-daemon --console=plain
+      - name: SPEC 2.1 conformance
+        run: npm run conformance
+      - name: Negative controls (the gate must be able to fail)
+        run: npm run conformance:negative

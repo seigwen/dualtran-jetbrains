@@ -52,6 +52,18 @@ object DualTranCore {
         return out.toString()
     }
 
+    /**
+     * Resolve the persisted `lowest` sentinel against the selected model's declared options.
+     * Returns "" when nothing should be sent; explicit values pass through unchanged.
+     */
+    fun resolveReasoning(setting: String, options: List<String>): String {
+        if (setting != "lowest") return setting
+        for (candidate in listOf("none", "minimal", "low")) {
+            if (candidate in options) return candidate
+        }
+        return ""
+    }
+
     fun buildChatPayload(model: String, text: String, target: String, reasoning: String = "lowest"): String {
         val system = "You translate into $target. Return only the translation, no commentary and " +
             "no quotes. Keep names, numbers and inline code exactly as they appear. " +
